@@ -45,19 +45,29 @@ const Manager = () => {
         navigator.clipboard.writeText(text);
     };
 
-    const showPassword = () => {
-        passwordRef.current.type = "text"
-        console.log(ref.current.src)
-        if (ref.current.src.includes("src/assets/eyes_cross.png")) {
-            ref.current.src = "src/assets/eyes.png"
-            passwordRef.current.type = "password"
-        }
-        else {
-            passwordRef.current.type = "text"
-            ref.current.src = "src/assets/eyes_cross.png"
-        }
+    // const showPassword = () => {
+    //     passwordRef.current.type = "text"
+    //     console.log(ref.current.src)
+    //     if (ref.current.src.includes("/assets/eyes_cross.png")) {
+    //         ref.current.src = "src/assets/eyes.png"
+    //         passwordRef.current.type = "password"
+    //     }
+    //     else {
+    //         passwordRef.current.type = "text"
+    //         ref.current.src = "/assets/eyes_cross.png"
+    //     }
 
-    }
+    // }
+    const showPassword = () => {
+        if (ref.current.src.includes("eyes_cross.png")) {
+            ref.current.src = "/assets/eyes.png"; // ✅ Corrected path
+            passwordRef.current.type = "password";
+        } else {
+            ref.current.src = "/assets/eyes_cross.png"; // ✅ Corrected path
+            passwordRef.current.type = "text";
+        }
+    };
+    
     const savePassword = async () => {
         if (form.site.length > 3 && form.username.length > 3 && form.password.length > 3) {
 
@@ -199,7 +209,7 @@ const Manager = () => {
                         <div className="relative">
                             <input ref={passwordRef} value={form.password} onChange={handleChange} name="password" placeholder='Enter Password' className='rounded-full border border-green-500 w-full p-4 py-1'/>
                             <span className='absolute right-[3px] top-[4px] cursor-pointer' onClick={showPassword}>
-                                <img ref={ref} className='p-1' width={26} src="src/assets/eyes.png" alt="eye" />
+                                <img ref={ref} className='p-1' width={26} src="/assets/eyes.png" alt="eye" />
                             </span>
                         </div>
 
